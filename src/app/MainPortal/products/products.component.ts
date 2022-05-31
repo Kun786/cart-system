@@ -22,6 +22,7 @@ export class ProductsComponent implements OnInit {
 
   GetDataForMyComponent(){
     this.MyDataArray = this._DataService.GetData();
+    console.log(this.MyDataArray);
   }
 
   GoToViewProduct(){
