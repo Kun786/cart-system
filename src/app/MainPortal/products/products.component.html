@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h1 class="text-center">Welcome to My Product List</h1>
+    <div class="row">
+      <div class="col col-lg-4 my-5" *ngFor="let _Data of MyDataArray">
+        <div class="card" style="width: 18rem;">
+          <img [src]="_Data.Image1" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{_Data.Name}}</h5>
+            <p class="card-text">{{_Data.Description}}</p>
+            <p class="text-info">{{_Data.qty}}</p>
+            <span *ngIf="_Data.qty !== 0">
+              <i class="fas fa-check text-success h4"></i>
+              <h4 class="text-succes">{{_Data.qty !== 0 ? 'In Stock':''}}</h4>
+            </span>
+
+            <span *ngIf="_Data.qty === 0">
+              <i class="fas fa-times text-danger h4"></i>
+              <h4 class="text-danger">
+              {{_Data.qty === 0 ? 'Out Of Stock':''}}
+            </h4>
+          </span>
+
+            <button class="btn btn-outline-success w-100" [ngClass]="_Data.qty === 0 ? 'btn-outline-danger': 'btn-outline-success'" [disabled]="_Data.qty === 0">
+              {{_Data.qty ===0 ? 'Out of Stock' : 'Add To Cart'}}
+              (click)="GoToViewProduct()"
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
