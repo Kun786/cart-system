@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from 'src/app/SharedPortal/Services/data-service.service';
 import { MessengerService } from 'src/app/SharedPortal/Services/messenger.service';
+import { NonVolatileService } from 'src/app/SharedPortal/Services/non-volatile.service';
 
 @Component({
   selector: 'app-view-cart',
@@ -14,7 +15,8 @@ export class ViewCartComponent implements OnInit {
   PublicId:any;
   constructor(
     private _MessengerService:MessengerService,
-    private _DataService:DataServiceService
+    private _DataService:DataServiceService,
+    private _NonVolatileService:NonVolatileService
   ) { }
 
   ngOnInit(): void {
@@ -29,8 +31,12 @@ export class ViewCartComponent implements OnInit {
 
   GetDataFromMyService(){
     this.DataFromMyService = this._DataService.GetData();
+    if( this.Data === undefined ){
+    const Id = this._NonVolatileService.GetDataFromLocalStorgae();
+    this.FilteredArray = this.DataFromMyService.filter( (Result:any) =>{ return ( Result._id === Id ) });
+    return
+    }
     this.FilteredArray = this.DataFromMyService.filter( (Result:any) =>{ return ( Result._id === this.Data ) });
-    console.log(this.FilteredArray);
   }
 
 }

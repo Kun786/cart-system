@@ -1,9 +1,10 @@
 <div class="container mt-5">
     <h1 class="text-center">Welcome to My Product List</h1>
     <div class="row">
-      <div class="col col-lg-4 my-5" *ngFor="let _Data of MyDataArray">
+      <div class="col col-lg-4 my-5" *ngFor="let _Data of MyDataArray; let i=index">
         <div class="card" style="width: 18rem;">
-          <img [src]="_Data.Image1" class="card-img-top" alt="...">
+          <img [src]="_Data.Image[0]" alt="">
+          <!-- <img *ngFor="let NewData of _Data.Image" [src]="NewData" alt="">{{i+1}} For nested loop to get Object Array -->
           <div class="card-body">
             <h5 class="card-title">{{_Data.Name}}</h5>
             <p class="card-text">{{_Data.Description}}</p>

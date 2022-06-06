@@ -1,1 +1,8 @@
-
+<div class="container">
+    <h1>Name: {{FilteredArray[0].Name}}</h1>
+    <h3>Quantity: {{FilteredArray[0].qty}}</h3>
+    <p>Description: {{FilteredArray[0].Description}}</p>
+    <img *ngFor="let _Data of FilteredArray[0].Image" [src]="_Data" alt="">
+    <!-- <p>{{_Data}}</p> -->
+    <p></p>
+</div>
