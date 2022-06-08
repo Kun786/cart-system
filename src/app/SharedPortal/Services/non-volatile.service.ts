@@ -15,4 +15,12 @@ export class NonVolatileService {
     return JSON.parse(localStorage.getItem('product-id') || '{}');
   }
 
+  AddProdcutToLocalStorage(Data:any){
+    localStorage.setItem('user-cart',JSON.stringify(Data));
+  }
+
+  GetProdcutToLocalStorage(){
+    return JSON.parse(localStorage.getItem('user-cart') || '{}');
+  }
+
 }

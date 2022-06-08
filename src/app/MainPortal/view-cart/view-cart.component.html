@@ -1,4 +1,15 @@
 <div class="container">
+    <h4>Cart Contorls</h4>
+    <button class="btn btn-outline-primary mx-3" (click)="AddQuantity()">+</button>
+    <button class="btn btn-outline-primary" (click)="SubQuantity()">-</button>
+    <div class="container bg-light" *ngIf="ShowCart !== false">
+        <img [src]="FilteredArray[0].Image[0]" alt="">
+        <p>Qunatity:{{CartQuantity}}</p>
+        <button class="btn btn-outline-primary mx-3">+</button>
+        <button class="btn btn-outline-primary">-</button>
+    </div>
+</div>
+<div class="container">
     <h1>Name: {{FilteredArray[0].Name}}</h1>
     <h3>Quantity: {{FilteredArray[0].qty}}</h3>
     <p>Description: {{FilteredArray[0].Description}}</p>
