@@ -8,7 +8,8 @@
       "https://pbs.twimg.com/media/D90Z_reWwAM1tHx.jpg"
       ],
       "Description":"This is best company for bat",
-      "qty":10
+      "qty":10,
+      "NewQuantity":0
     },
     {
       "_id":2,
@@ -18,7 +19,8 @@
       "https://i.ytimg.com/vi/Xw0f1rIOYj4/maxresdefault.jpg"
       ],
       "Description":"This is best company for ball",
-      "qty":12
+      "qty":12,
+      "NewQuantity":0
     },
     {
       "_id":3,
@@ -29,7 +31,8 @@
       "https://media.istockphoto.com/vectors/cricket-helmet-vector-id1084522126?k=20&m=1084522126&s=170667a&w=0&h=WC2-o9tDY7BlXTJClXNiwMqa-SQTAgEEgkowUsXu7R0="
       ],
       "Description":"This is best company for helmet",
-      "qty":14
+      "qty":14,
+      "NewQuantity":0
     },
     {
       "_id":4,
@@ -40,7 +43,8 @@
       "https://icdn.sempremilan.com/wp-content/uploads/2020/07/EeAHJlNWsAIHFI1.jpeg"
       ],
       "Description":"This is best culb in Serie A",
-      "qty":12
+      "qty":12,
+      "NewQuantity":0
     },
     {
       "_id":5,
@@ -51,7 +55,8 @@
       "https://cf.shopee.com.my/file/138690594ae8e0f7d32f54d481822007"
       ],
       "Description":"This best F1 Club",
-      "qty":17
+      "qty":17,
+      "NewQuantity":0
     },
     {
       "_id":6,
@@ -62,7 +67,8 @@
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6h6dgX3pnW1zeUv594OsqMor37SjMO8b_kg&usqp=CAU"
       ],
       "Description":"Beautiful Shirts",
-      "qty":0
+      "qty":0,
+      "NewQuantity":0
     }
     
   ]
