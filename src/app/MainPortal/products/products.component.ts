@@ -28,13 +28,12 @@ export class ProductsComponent implements OnInit {
 
   GetDataForMyComponent(){
     this.MyDataArray = this._DataService.GetData();
-    console.log(this.MyDataArray);
   }
 
   GoToViewProduct(Id:any){
 
     this._NonVolatileService.SetDataToLocalStorage(Id);
-    this._MessengerService.SendMessageWithData(Id);
+    this._MessengerService.SendMessageWithData({Id:Id,NewProduct:'yes'});
     this._Router.navigate(['view-cart']);
   }
 }

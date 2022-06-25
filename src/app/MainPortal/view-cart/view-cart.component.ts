@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { isEmpty } from 'rxjs';
 import { DataServiceService } from 'src/app/SharedPortal/Services/data-service.service';
 import { MessengerService } from 'src/app/SharedPortal/Services/messenger.service';
@@ -21,11 +22,16 @@ export class ViewCartComponent implements OnInit {
   FinalUserCartArray: any = [];
   CartArray: any = [];
   NewCartArray:any =[];
+  SelectedQuantity=0;
+  ShowBox:Boolean = false;
+  LocalStorageCartArray:any = []
+  LocalStorageSpecificArray:any = [];
 
   constructor(
     private _MessengerService: MessengerService,
     private _DataService: DataServiceService,
-    private _NonVolatileService: NonVolatileService
+    private _NonVolatileService: NonVolatileService,
+    private _ToastrService:ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +42,10 @@ export class ViewCartComponent implements OnInit {
       }
     )
     this.GetDataFromMyService();
+    this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();
+    if(Object.entries(this.LocalStorageCartArray).length !== 0){
+      this.ShowBox = true;
+    }
   }
 
   GetDataFromMyService() {
@@ -46,7 +56,7 @@ export class ViewCartComponent implements OnInit {
       this.ProductQuantity = this.FilteredArray[0].qty;
       return
     }
-    this.FilteredArray = this.DataFromMyService.filter((Result: any) => { return (Result._id === this.Data) });
+    this.FilteredArray = this.DataFromMyService.filter((Result: any) => { return (Result._id === this.Data.Id) });
     this.ProductQuantity = this.FilteredArray[0].qty;
   }
 
@@ -77,37 +87,67 @@ export class ViewCartComponent implements OnInit {
 
   // }
 
-  AddQuantity() {
-    if (this.CartQuantity >= this.ProductQuantity) {
+  AddQuantity(Id:any) {
+    this.ShowBox = true;
+    let CartObjectPlus = this._NonVolatileService.GetProdcutToLocalStorage();
+    //Agar Quantity Increase Kar Jae New Quanityt To Khatam Kar do Yeh Fucntion
+    if (this.SelectedQuantity >= this.ProductQuantity) {
+      this._ToastrService.error('Quantiyy cannot Exceed that Original Quanityt');
       return
-    }
-    const CartObject = this._NonVolatileService.GetProdcutToLocalStorage();
-    if(Object.entries(CartObject).length === 0){
-      this.CartArray.push(this.FilteredArray[0]);
-      this._NonVolatileService.AddProdcutToLocalStorage(this.CartArray);
-      console.log('yes')
-    }else{
-      let CartObject = this._NonVolatileService.GetProdcutToLocalStorage();
-      let NewArray:any; 
-      CartObject.forEach((element:any) => {
-        if(this.FilteredArray[0]._id === element._id){
-          element.NewQuantity++;
-          NewArray = element
-        }
-        this.CartArray = [];
-        this._NonVolatileService.AddProdcutToLocalStorage(this.CartArray);
-        this.CartArray.push(NewArray);
-        this._NonVolatileService.AddProdcutToLocalStorage(this.CartArray);
-       });
     }
     
-  }
+    //First Time Jaab LocalStorage main Khuch nahi Para Hua
 
-  SubQuantity() {
-    if (this.CartQuantity <= 0) {
+    if(Object.entries(CartObjectPlus).length === 0){
+      this.CartArray.push(this.FilteredArray[0]);
+      this._NonVolatileService.AddProdcutToLocalStorage(this.CartArray);
+      this.Data = undefined;
+      this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();
       return
     }
-    this.CartQuantity--;
+
+    //Abb LoaclStorage main Data Para Hua hai Lakin Hum nay dekhana hai k Quantity Increase hoo lakin jaab new 
+    // Data Peechay say Aye Taab wo Push karay Sara
+
+    if(Object.entries(CartObjectPlus).length !== 0 && this.Data !== undefined){
+      this.NewCartArray.push(this.FilteredArray[0]);
+      CartObjectPlus.forEach((element:any) => {
+        this.NewCartArray.push(element);
+      });
+      this._NonVolatileService.AddProdcutToLocalStorage(this.NewCartArray);
+      this.Data = undefined;
+      this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();
+      return
+    }
+
+      CartObjectPlus.map((element:any) => {
+        if(this.FilteredArray[0]._id === element._id){
+          element.NewQuantity++;
+          this.SelectedQuantity++;
+        }
+       });
+       this.CartQuantity++;
+       this._NonVolatileService.AddProdcutToLocalStorage(CartObjectPlus);
+       this._NonVolatileService.SetUserMiscellaneousInformation(this.CartQuantity);
+       this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();
+  }
+
+  SubQuantity(Id:any) {
+
+    let CartObjectPlus = this._NonVolatileService.GetProdcutToLocalStorage();
+    if (this.SelectedQuantity <= 0) {
+      return
+    }
+
+    CartObjectPlus.map((element:any) => {
+      if(this.FilteredArray[0]._id === element._id){
+        element.NewQuantity--;
+        this.SelectedQuantity--;
+      }
+     });
+     this.CartQuantity--;
+     this._NonVolatileService.AddProdcutToLocalStorage(CartObjectPlus);
+     this._NonVolatileService.SetUserMiscellaneousInformation(this.CartQuantity);
   }
 
 }

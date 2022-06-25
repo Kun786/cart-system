@@ -10,7 +10,7 @@ export class MessengerService {
   
   constructor() { }
 
-  SendMessageWithData(PlayLoad:Boolean){
+  SendMessageWithData(PlayLoad:any){
     this._Subject.next(PlayLoad);
   }
   

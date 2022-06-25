@@ -7,6 +7,13 @@ import { ProductsComponent } from './MainPortal/products/products.component';
 import { HeaderComponent } from './MainPortal/header/header.component';
 import { FooterComponent } from './MainPortal/footer/footer.component';
 import { ViewCartComponent } from './MainPortal/view-cart/view-cart.component';
+import { UserSignInComponent } from './ManagementPortal/UserManagement/user-sign-in/user-sign-in.component';
+import { UserSignUpComponent } from './ManagementPortal/UserManagement/user-sign-up/user-sign-up.component';
+import { AdminSignInComponent } from './ManagementPortal/AdminManagement/admin-sign-in/admin-sign-in.component';
+import { AdminSignUpComponent } from './ManagementPortal/AdminManagement/admin-sign-up/admin-sign-up.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -14,11 +21,22 @@ import { ViewCartComponent } from './MainPortal/view-cart/view-cart.component';
     ProductsComponent,
     HeaderComponent,
     FooterComponent,
-    ViewCartComponent
+    ViewCartComponent,
+    UserSignInComponent,
+    UserSignUpComponent,
+    AdminSignInComponent,
+    AdminSignUpComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(
+      {maxOpened:1,
+      autoDismiss:true,}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

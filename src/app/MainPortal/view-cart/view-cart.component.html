@@ -1,6 +1,18 @@
+<div class="container bg-dark text-white">
+    <div *ngIf="ShowBox===true">
+        <div *ngFor="let _Data of LocalStorageCartArray">
+            <img [src]="_Data.Image[0]" alt="" class="w-25 h-25">
+            <p>SelectedQuantity:{{_Data.NewQuantity}}</p>
+        </div>
+        <p>TotalCartQuantity:{{CartQuantity}}</p>
+    </div>
+    <div *ngIf="ShowBox===false">
+        <h3 class="text-danger">Nothing Has Selected</h3>
+    </div>
+</div>
 <div class="container">
-    <button class="btn btn-outline-primary mx-3" (click)="AddQuantity()">+</button>
-    <button class="btn btn-outline-primary" (click)="SubQuantity()">-</button>
+    <button class="btn btn-outline-primary mx-3" (click)="AddQuantity(FilteredArray[0]._id)">+</button>
+    <button class="btn btn-outline-primary" (click)="SubQuantity(FilteredArray[0]._id)">-</button>
     <div class="container bg-light" *ngIf="ShowCart !== false">
         <img [src]="FilteredArray[0].Image[0]" alt="">
         <p>Qunatity:{{CartQuantity}}</p>

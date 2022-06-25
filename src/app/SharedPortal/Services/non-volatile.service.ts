@@ -23,4 +23,11 @@ export class NonVolatileService {
     return JSON.parse(localStorage.getItem('user-cart') || '{}');
   }
 
+  SetUserMiscellaneousInformation(Quantity:any){
+    localStorage.setItem('user-total-quantity',JSON.stringify(Quantity));
+  }
+
+  GetUserMiscellaneousInformation(Quantity:any){
+    return JSON.parse(localStorage.getItem('user-total-quantity') || '{}');
+  }
 }
