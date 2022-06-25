@@ -126,7 +126,6 @@ export class ViewCartComponent implements OnInit {
           this.SelectedQuantity++;
         }
        });
-       this.CartQuantity++;
        this._NonVolatileService.AddProdcutToLocalStorage(CartObjectPlus);
        this._NonVolatileService.SetUserMiscellaneousInformation(this.CartQuantity);
        this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();
@@ -141,11 +140,11 @@ export class ViewCartComponent implements OnInit {
 
     CartObjectPlus.map((element:any) => {
       if(this.FilteredArray[0]._id === element._id){
+        console.log(element);
         element.NewQuantity--;
         this.SelectedQuantity--;
       }
      });
-     this.CartQuantity--;
      this._NonVolatileService.AddProdcutToLocalStorage(CartObjectPlus);
      this._NonVolatileService.SetUserMiscellaneousInformation(this.CartQuantity);
   }
