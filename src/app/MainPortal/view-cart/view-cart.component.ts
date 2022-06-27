@@ -87,7 +87,7 @@ export class ViewCartComponent implements OnInit {
 
   // }
 
-  AddQuantity(Id:any) {
+  AddQuantity() {
     this.ShowBox = true;
     let CartObjectPlus = this._NonVolatileService.GetProdcutToLocalStorage();
     //Agar Quantity Increase Kar Jae New Quanityt To Khatam Kar do Yeh Fucntion
@@ -98,20 +98,20 @@ export class ViewCartComponent implements OnInit {
     
     //First Time Jaab LocalStorage main Khuch nahi Para Hua
 
-    if(Object.entries(CartObjectPlus).length === 0){
-      this.CartArray.push(this.FilteredArray[0]);
-      this._NonVolatileService.AddProdcutToLocalStorage(this.CartArray);
-      this.Data = undefined;
-      this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();
+    if(Object.entries(CartObjectPlus).length === 0){ //iss line ka mtalab k jo data(LS) check karo k wo empty hai ya nahi
+      this.CartArray.push(this.FilteredArray[0]);//CartArray(Variable) Push Filter Array ko Push (Filter Array App ka wo Data Object hai jo App apnay Json Data say filter kar raya hon on base of Id)
+      this._NonVolatileService.AddProdcutToLocalStorage(this.CartArray);// Local Storage main Data Add (Create)
+      this.Data = undefined;//Yeh hauamain Bataye ga k hum same Object(Data) pay kharay hai k nahi
+      this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();// Yeh main Data Local Storage say Dubara get kar raha hoon (Get/Read)
       return
     }
 
     //Abb LoaclStorage main Data Para Hua hai Lakin Hum nay dekhana hai k Quantity Increase hoo lakin jaab new 
     // Data Peechay say Aye Taab wo Push karay Sara
 
-    if(Object.entries(CartObjectPlus).length !== 0 && this.Data !== undefined){
-      this.NewCartArray.push(this.FilteredArray[0]);
-      CartObjectPlus.forEach((element:any) => {
+    if(Object.entries(CartObjectPlus).length !== 0 && this.Data !== undefined){//Jab Home/Product say New Data Object Aye
+      this.NewCartArray.push(this.FilteredArray[0]); //Jo New Object Data aa raha hai uss ko NewArray(variable/property) Main Push kar do
+      CartObjectPlus.forEach((element:any) => {//Local sotrage array of objects pay loop aur step by step un objects ko NewArray Push karo taka NewObjec jo k product say aa raha hai wo local storage k objects k sath mill jae
         this.NewCartArray.push(element);
       });
       this._NonVolatileService.AddProdcutToLocalStorage(this.NewCartArray);
@@ -120,10 +120,10 @@ export class ViewCartComponent implements OnInit {
       return
     }
 
-      CartObjectPlus.map((element:any) => {
-        if(this.FilteredArray[0]._id === element._id){
-          element.NewQuantity++;
-          this.SelectedQuantity++;
+      CartObjectPlus.map((element:any) => { //Yahan main Loop Kara raha hoon Local Storage say jo Array of Objetcs aa rahi hai
+        if(this.FilteredArray[0]._id === element._id){ // Mujhay pata nahi k Localstorage say jo Array aa rahi uss main kitnay obketcs hain to Main filter k Meri localstroage ke array of objetcs ke id === FilterArray[0]
+          element.NewQuantity++;//Increment 
+          this.SelectedQuantity++; // Increament
         }
        });
        this._NonVolatileService.AddProdcutToLocalStorage(CartObjectPlus);
@@ -131,7 +131,7 @@ export class ViewCartComponent implements OnInit {
        this.LocalStorageCartArray = this._NonVolatileService.GetProdcutToLocalStorage();
   }
 
-  SubQuantity(Id:any) {
+  SubQuantity() {
 
     let CartObjectPlus = this._NonVolatileService.GetProdcutToLocalStorage();
     if (this.SelectedQuantity <= 0) {
