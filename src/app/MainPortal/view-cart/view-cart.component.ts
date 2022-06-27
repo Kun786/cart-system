@@ -122,8 +122,8 @@ export class ViewCartComponent implements OnInit {
 
       CartObjectPlus.map((element:any) => { //Yahan main Loop Kara raha hoon Local Storage say jo Array of Objetcs aa rahi hai
         if(this.FilteredArray[0]._id === element._id){ // Mujhay pata nahi k Localstorage say jo Array aa rahi uss main kitnay obketcs hain to Main filter k Meri localstroage ke array of objetcs ke id === FilterArray[0]
-          element.NewQuantity++;//Increment 
-          this.SelectedQuantity++; // Increament
+          element.NewQuantity++;//Increment  (Update)
+          this.SelectedQuantity++; // Increament (Update)
         }
        });
        this._NonVolatileService.AddProdcutToLocalStorage(CartObjectPlus);
@@ -140,7 +140,6 @@ export class ViewCartComponent implements OnInit {
 
     CartObjectPlus.map((element:any) => {
       if(this.FilteredArray[0]._id === element._id){
-        console.log(element);
         element.NewQuantity--;
         this.SelectedQuantity--;
       }

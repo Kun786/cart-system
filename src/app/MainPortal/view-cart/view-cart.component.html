@@ -12,7 +12,7 @@
 </div>
 <div class="container">
     <button class="btn btn-outline-primary mx-3" (click)="AddQuantity()">+</button>
-    <button class="btn btn-outline-primary" (click)="SubQuantity()">-</button>
+    <button class="btn btn-outline-primary" (click)="SubQuantity( )">-</button>
     <div class="container bg-light" *ngIf="ShowCart !== false">
         <img [src]="FilteredArray[0].Image[0]" alt="">
         <p>Qunatity:{{CartQuantity}}</p>
