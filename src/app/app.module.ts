@@ -14,6 +14,10 @@ import { AdminSignUpComponent } from './ManagementPortal/AdminManagement/admin-s
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AdminDefaultComponent } from './AdminPortal/admin-default/admin-default.component';
+import { AdminDefaultModule } from './AdminPortal/admin-default/admin-default.module';
+import { DashBoardComponent } from './AdminPortal/AdminComponents/dash-board/dash-board.component';
+import { UserListComponent } from './AdminPortal/AdminComponents/user-list/user-list.component';
 
 
 @NgModule({
@@ -37,7 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot(
       {maxOpened:1,
       autoDismiss:true,}
-    )
+    ),
+    AdminDefaultModule
   ],
   providers: [],
   bootstrap: [AppComponent]
