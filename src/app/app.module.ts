@@ -18,6 +18,7 @@ import { AdminDefaultComponent } from './AdminPortal/admin-default/admin-default
 import { AdminDefaultModule } from './AdminPortal/admin-default/admin-default.module';
 import { DashBoardComponent } from './AdminPortal/AdminComponents/dash-board/dash-board.component';
 import { UserListComponent } from './AdminPortal/AdminComponents/user-list/user-list.component';
+import { CreateProductComponent } from './AdminPortal/AdminComponents/create-product/create-product.component';
 
 
 @NgModule({

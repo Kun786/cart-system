@@ -1,0 +1,35 @@
+<div class="container my-5">
+  <h1 class="text-center">Welcome Lets Create Product</h1>
+  <form (ngSubmit)="SubmitProductForm()" [formGroup]="ProductForm">
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Name</label>
+      <input type="text" class="form-control" id="exampleInputPassword1" formControlName="Name">
+      <div class="error  text-danger"
+        *ngIf="ProductForm.controls['Name'].invalid && (ProductForm.controls['Name'].dirty || ProductForm.controls['Name'].touched)">
+        <span *ngIf="ProductForm.controls['Name'].errors.minlength || ProductForm.controls['Name'].errors.maxlength ">
+          <small>Name between 4 to 20 Characters!</small></span>
+        <span *ngIf="(ProductForm.controls['Name'].errors.pattern)">
+          Only Alphabets & Spaces Allowed</span>
+        <span *ngIf="ProductForm.controls['Name'].errors.required">
+          <small>Field Required!</small>
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input type="email" formControlName="Email" class="form-control" placeholder="Email">
+      <div class="error  text-danger"
+        *ngIf="ProductForm.controls['Email'].invalid && (ProductForm.controls['Email'].dirty || ProductForm.controls['Email'].touched)">
+        <span *ngIf="ProductForm.controls['Email'].errors.email">
+          <small>Use correct pattern as example@example.com</small></span>
+        <span *ngIf="ProductForm.controls['Email'].errors.required">
+          <small>Field Required!</small>
+        </span>
+      </div>
+    </div>
+    <input type="text" type="file" (change)="GetImage($event)">
+    <button type="submit" class="btn btn-primary"
+    [disabled]="ProductForm.pristine || ProductForm.invalid"
+    >Submit</button>
+  </form>
+</div>

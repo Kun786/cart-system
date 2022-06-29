@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { DashBoardComponent } from '../AdminComponents/dash-board/dash-board.component';
 import { UserListComponent } from '../AdminComponents/user-list/user-list.component';
+import { CreateProductComponent } from '../AdminComponents/create-product/create-product.component';
 
 
 
@@ -13,7 +14,8 @@ import { UserListComponent } from '../AdminComponents/user-list/user-list.compon
   declarations: [
     AdminDefaultComponent,
     DashBoardComponent,
-    UserListComponent
+    UserListComponent,
+    CreateProductComponent
   ],
   imports: [
     CommonModule,
