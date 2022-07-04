@@ -7,15 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ChildComponent implements OnInit {
 
-  @Input() ChildValue:any;
+  @Input() SomeValue:any;
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.ChildValue);
+    console.log(this.SomeValue);
   }
 
   ngOnChanges(){
-    console.log(this.ChildValue);
+    console.log(this.SomeValue);
   }
 
 }

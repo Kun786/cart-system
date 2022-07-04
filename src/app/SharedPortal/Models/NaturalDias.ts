@@ -4,3 +4,4 @@ export interface ND {
     NDName:String,
     AssestsDestruction:Number
 }
+
