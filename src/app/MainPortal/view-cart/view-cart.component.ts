@@ -148,4 +148,7 @@ export class ViewCartComponent implements OnInit {
      this._NonVolatileService.SetUserMiscellaneousInformation(this.CartQuantity);
   }
 
+
+
+  
 }

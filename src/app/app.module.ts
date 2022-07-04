@@ -19,6 +19,9 @@ import { AdminDefaultModule } from './AdminPortal/admin-default/admin-default.mo
 import { DashBoardComponent } from './AdminPortal/AdminComponents/dash-board/dash-board.component';
 import { UserListComponent } from './AdminPortal/AdminComponents/user-list/user-list.component';
 import { CreateProductComponent } from './AdminPortal/AdminComponents/create-product/create-product.component';
+import { AngularConceptsComponent } from './MainPortal/angular-concepts/angular-concepts.component';
+import { ParentComponent } from './MainPortal/parent/parent.component';
+import { ChildComponent } from './MainPortal/child/child.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { CreateProductComponent } from './AdminPortal/AdminComponents/create-pro
     UserSignInComponent,
     UserSignUpComponent,
     AdminSignInComponent,
-    AdminSignUpComponent
+    AdminSignUpComponent,
+    AngularConceptsComponent,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,
